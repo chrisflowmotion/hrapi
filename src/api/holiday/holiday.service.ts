@@ -17,10 +17,10 @@ export const getEmployeeHolidayRequests = async (id: IHolidayRequest['id']) => {
 export const newHolidayRequest = async (holidayRequest: IHolidayRequest) => {
     const result = await execute<{ affectedRows: number }>(HolidayQueries.addHolidayRequest, [
         holidayRequest.name,
-        holidayRequest.startDate,
-        holidayRequest.endDate,
+        holidayRequest.start_date,
+        holidayRequest.end_date,
         holidayRequest.status,
-        holidayRequest.daysUsed,
+        holidayRequest.days_used,
         holidayRequest.employee
     ]);
     return result.affectedRows > 0;
@@ -29,10 +29,10 @@ export const newHolidayRequest = async (holidayRequest: IHolidayRequest) => {
 export const updateHolidayRequest = async (holidayRequest: IHolidayRequest) => {
     const result = await execute<{ affectedRows: number }>(HolidayQueries.updateHolidayRequest, [
         holidayRequest.name,
-        holidayRequest.startDate,
-        holidayRequest.endDate,
+        holidayRequest.start_date,
+        holidayRequest.end_date,
         holidayRequest.status,
-        holidayRequest.daysUsed,
+        holidayRequest.days_used,
         holidayRequest.employee,
         holidayRequest.id
     ]);

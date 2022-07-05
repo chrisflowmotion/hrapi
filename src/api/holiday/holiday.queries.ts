@@ -7,10 +7,10 @@ export const HolidayQueries = {
 
     getHolidayRequest: `SELECT * FROM hr_app.holidayrequests WHERE id = ?`,
 
-    addHolidayRequest: `INSERT INTO hr_app.holidayrequests (name, startDate, endDate, Status, daysUsed, employee)
+    addHolidayRequest: `INSERT INTO hr_app.holidayrequests (name, start_date, end_date, Status, days_used, employee)
     values(?, ?, ?, ?, ?, ?)`,
 
-    updateHolidayRequest: `UPDATE hr_app.holidayrequests SET name = ?, startDate = ?, endDate = ?, status = ?, daysUsed = ?
+    updateHolidayRequest: `UPDATE hr_app.holidayrequests SET name = ?, start_date = ?, end_date = ?, status = ?, days_used = ?
     WHERE id = ?`,
 
     deleteHolidayRequest: `DELETE FROM hr_app.holidayrequests WHERE id = ?`,

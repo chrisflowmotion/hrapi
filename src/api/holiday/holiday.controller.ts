@@ -1,7 +1,6 @@
 // tslint:disable:no-console
 import { Request, Response, RequestHandler } from "express";
 import * as model from "./holiday.model";
-import { HolidayQueries } from "./holiday.queries";
 import * as HolidayService from "./holiday.service";
 
 export const getAllHolidayRequests: RequestHandler = async (req: Request, res: Response) => {
@@ -15,7 +14,7 @@ export const getAllHolidayRequests: RequestHandler = async (req: Request, res: R
             message: 'There was an error fetching holiday requests.'
         });
     }
-}
+};
 
 // @ts-ignore
 export const getHolidayRequest: RequestHandler = async (req: model.IGetHolidayRequest, res: Response) => {

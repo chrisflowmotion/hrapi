@@ -10,11 +10,11 @@ export interface IHolidayRequest {
     id: string | number | undefined;
 
     name: string;
-    startDate: string;
-    endDate: string;
+    start_date: string;
+    end_date: string;
 
     status: Status;
-    daysUsed: number;
+    days_used: number;
     employee: string | number;
 };
 
