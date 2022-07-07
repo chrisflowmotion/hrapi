@@ -16,6 +16,7 @@ export interface IEmployee {
     address_city: string;
     address_postcode: string;
     holiday_allowance: number;
+    emergency_contact: number;
 }
 
 // tslint:disable:no-empty-interface

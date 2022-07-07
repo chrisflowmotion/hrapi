@@ -1,0 +1,21 @@
+export const AuthQueries = {
+    getAllUsers: `SELECT users.id, users.username, privileges.privilege AS privileges FROM users
+                    INNER JOIN userprivileges ON users.id = userprivileges.user
+                    INNER JOIN PRIVILEGES ON PRIVILEGES.id = userprivileges.privilege`,
+
+    addUser: `INSERT INTO users (username, password, salt) values(?,?,?)`,
+
+    deleteUser: `DELETE FROM users WHERE username = ?`,
+
+    resetPassword: `UPDATE users SET users.password = ?, users.salt = ? WHERE users.id = ?`,
+
+    changePassword: `UPDATE users SET users.password = ?, users.salt = ? WHERE users.username = ?`,
+
+    getPassword: `SELECT  password, salt from hr_app.users where username = ?`,
+
+    grantPrivilege: `INSERT INTO userprivileges (user, privilege) values(?, ?)`,
+
+    getPrivilegeId: `SELECT privileges.id FROM privileges WHERE privileges.privilege = ?`,
+
+    revokePrivileges: ``,
+};

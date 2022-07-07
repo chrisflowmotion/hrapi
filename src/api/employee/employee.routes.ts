@@ -1,18 +1,16 @@
 import { Router } from 'express';
 import * as Controller from './employee.controller'
+import { ACCESS, authorize } from '../middlewares/auth.middleware';
 
 const router = Router();
 
-router.route('/all').get(Controller.getAllEmployees);
+router.route('/all').get(authorize([ACCESS.EMPLOYEES_ALL]), Controller.getAllEmployees);
 
 // C.R.U.D single Employee
-router.route('/:id').get(Controller.getEmployee);
-router.route('/:id').put(Controller.updateEmployee);
-router.route('/').post(Controller.newEmployee);
-router.route('/:id').delete(Controller.deleteEmployee);
+router.route('/:id').get(authorize([ACCESS.EMPLOYEES_GET]), Controller.getEmployee);
+router.route('/:id').put(authorize([ACCESS.EMPLOYEES_UPDATE]), Controller.updateEmployee);
+router.route('/').post(authorize([ACCESS.EMPLOYEES_NEW]), Controller.newEmployee);
+router.route('/:id').delete(authorize([ACCESS.EMPLOYEES_DELETE]), Controller.deleteEmployee);
 
-// Add / remove manager
-router.route('/makeManager/:id').put(Controller.makeManager);
-router.route('/removeManager/:id').put(Controller.removeManager);
 
 export default router;

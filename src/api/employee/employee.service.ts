@@ -30,7 +30,7 @@ export const newEmployee = async (employee: IEmployee) => {
 };
 
 export const updateEmployee = async (employee: IEmployee) => {
-    const result = await execute<{ affectedRows: number }>(EmployeeQueries.addEmployee, [
+    const result = await execute<{ affectedRows: number }>(EmployeeQueries.updateEmployee, [
         employee.forename,
         employee.middle_name,
         employee.surname,
@@ -44,16 +44,6 @@ export const updateEmployee = async (employee: IEmployee) => {
         employee.holiday_allowance,
         employee.id
     ]);
-    return result.affectedRows > 0;
-};
-
-export const makeManager = async (id: IEmployee['id']) => {
-    const result = await execute<{ affectedRows: number }>(EmployeeQueries.makeManager, [id]);
-    return result.affectedRows > 0;
-};
-
-export const removeManager = async (id: IEmployee['id']) => {
-    const result = await execute<{ affectedRows: number }>(EmployeeQueries.removeManager, [id]);
     return result.affectedRows > 0;
 };
 

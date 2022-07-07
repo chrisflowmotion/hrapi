@@ -1,7 +1,6 @@
 // tslint:disable:no-console
 import { Request, Response, RequestHandler } from "express";
 import * as model from "./employee.model";
-import { EmployeeQueries } from "./employee.queries";
 import * as EmployeeService from "./employee.service";
 
 export const getAllEmployees: RequestHandler = async (req: Request, res: Response) => {
@@ -69,34 +68,6 @@ export const deleteEmployee: RequestHandler = async (req: model.IDeleteEmployeeR
         console.error('[employee.controller][updateEmployee][Error] ', error);
         res.status(500).json({
             message: 'There was an error updating employee ' + req.params.id + '.'
-        });
-    }
-};
-
-// @ts-ignore
-export const makeManager: RequestHandler = async (req: model.IUpdateEmployeeReq, res: Response) => {
-    try {
-        const result = await EmployeeService.makeManager(req.params.id);
-        res.status(200).json({ result });
-    }
-    catch (error) {
-        console.error('[employee.controller][makeManager][Error] ', error);
-        res.status(500).json({
-            message: 'There was an error adding manager access to employee ' + req.params.id + '.'
-        });
-    }
-};
-
-// @ts-ignore
-export const removeManager: RequestHandler = async (req: model.IUpdateEmployeeReq, res: Response) => {
-    try {
-        const result = await EmployeeService.removeManager(req.params.id);
-        res.status(200).json({ result });
-    }
-    catch (error) {
-        console.error('[employee.controller][removeManager][Error] ', error);
-        res.status(500).json({
-            message: 'There was an error removing manager access from employee ' + req.params.id + '.'
         });
     }
 };
