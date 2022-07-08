@@ -14,6 +14,8 @@
 - [Grant Privileges](#grant-privileges)
 - [Revoke Privileges](#revoke-privileges)
 
+---
+
 ### Get all users
 
 **Endpoint**: api/auth/  
@@ -40,6 +42,8 @@ Response:
 }
 ```
 
+---
+
 ### Login
 
 <sup>[back to top](#api)</sup>  
@@ -63,6 +67,8 @@ Response:
     "authenticated": true / false
 }
 ```
+
+---
 
 ### Reset Password
 
@@ -88,6 +94,8 @@ Response:
     "result": true / false
 }
 ```
+
+---
 
 ### Change own password
 
@@ -115,6 +123,8 @@ Response:
     "result": true / false
 }
 ```
+
+---
 
 ### Grant Privileges
 
@@ -145,6 +155,8 @@ Response:
 }
 ```
 
+---
+
 ### Revoke Privileges
 
 <sup>[back to top](#api)</sup>
@@ -173,6 +185,8 @@ Response:
 }
 ```
 
+---
+
 ## Employees
 
 - [Get all employees](#get-all-employees)
@@ -180,6 +194,8 @@ Response:
 - [Update an employee](#update-employee)
 - [Create new employee](#new-employee)
 - [Delete employee](#delete-employee)
+
+---
 
 ### Get All Employees
 
@@ -219,6 +235,8 @@ Response:
 }
 ```
 
+---
+
 ### Get Employee
 
 <sup>[back to top](#api)</sup>
@@ -257,6 +275,8 @@ Response:
 }
 ```
 
+---
+
 ### Update Employee
 
 <sup>[back to top](#api)</sup>
@@ -294,6 +314,8 @@ Response:
 }
 ```
 
+---
+
 ### New Employee
 
 <sup>[back to top](#api)</sup>
@@ -328,6 +350,8 @@ Response:
 }
 ```
 
+---
+
 ### Delete Employee
 
 <sup>[back to top](#api)</sup>
@@ -351,3 +375,5 @@ Response:
     "result": true / false
 }
 ```
+
+---
