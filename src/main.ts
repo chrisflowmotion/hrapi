@@ -26,7 +26,26 @@ const app = express()
     .use('/api/', routes);
 
 if (process.env.NODE_ENV !== 'production') {
-    const payload: Payload = { username: 'Chris', accessTypes: [ACCESS.USERS_ALL, ACCESS.USERS_CHANGE_OWN_PASSWORD] };
+    /**
+     * Create the test payload you want here. The appropriate JWT will be logged to
+     * the console
+     */
+    const payload: Payload = {
+        username: 'Chris',
+        accessTypes: [
+            ACCESS.USERS_ALL,
+            ACCESS.USERS_CHANGE_OWN_PASSWORD,
+            ACCESS.USERS_RESET_PASSWORD,
+            ACCESS.USERS_GRANT_PRIVILEGES,
+            ACCESS.USERS_REVOKE_PRIVILEGES,
+
+            ACCESS.EMPLOYEES_ALL,
+            ACCESS.EMPLOYEES_GET,
+            ACCESS.EMPLOYEES_NEW,
+            ACCESS.EMPLOYEES_DELETE,
+            ACCESS.EMPLOYEES_UPDATE
+        ]
+    };
     // tslint:disable:no-console
     console.log('JWT', generateToken(payload));
 }
