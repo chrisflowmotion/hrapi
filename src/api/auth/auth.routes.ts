@@ -20,13 +20,11 @@ router.route('/resetPassword').put(authorize([ACCESS.USERS_RESET_PASSWORD]), Con
 router.route('/changePassword').put(authorize([ACCESS.USERS_CHANGE_OWN_PASSWORD]), Controller.changeOwnPassword);
 
 // Grant privileges to a user account
-router.route('/grantPrivileges').put(authorize([ACCESS.USERS_GRANT_PRIVILEGES]), Controller.grantPrivileges);
+router.route('/grantPrivileges').post(authorize([ACCESS.USERS_GRANT_PRIVILEGES]), Controller.grantPrivileges);
 
 // Revoke privileges from a user account
-router.route('/revokePrivileges').put(authorize([ACCESS.USERS_REVOKE_PRIVILEGES]), Controller.revokePrivileges);
+router.route('/revokePrivileges').delete(authorize([ACCESS.USERS_REVOKE_PRIVILEGES]), Controller.revokePrivileges);
 
 router.route('/login').post(Controller.authenticateUser);
-
-router.route('/test').post(Controller.grantPrivileges);
 
 export default router;

@@ -18,8 +18,8 @@ export interface IDeleteUserReq extends Request<{ userID: IUser['id'] }> { };
 export interface IResetPasswordReq extends Request<{ userID: IUser['id'], newPassword: IUser['password'] }> { };
 export interface IChangeOwnPassword extends Request<{ username: IUser['username'], currentPassword: IUser['password'], newPassword: IUser['password'] }> { };
 
-export interface IGrantPrivilegesReq extends Request<{ userID: IUser['id'], privileges: IUser['privileges'] }> { };
-export interface IRevokePrivilegesReq extends Request<{ userID: IUser['id'], privileges: IUser['privileges'] }> { };
-
 export interface IGrantPrivilegeReq extends Request<{ userID: IUser['id'], privileges: ACCESS }> { };
-export interface IRevokePrivilegesReq extends Request<{ userID: IUser['id'], privileges: IUser['privileges'] }> { };
+export interface IGrantPrivilegesReq extends Request<{ userID: IUser['id'], privileges: IUser['privileges'][] }> { };
+
+export interface IRevokePrivilegeReq extends Request<{ userID: IUser['id'], privilege: IUser['privileges'] }> { };
+export interface IRevokePrivilegesReq extends Request<{ userID: IUser['id'], privileges: IUser['privileges'][] }> { };

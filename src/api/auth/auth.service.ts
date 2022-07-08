@@ -58,7 +58,8 @@ export const resetPassword = async (userID: IUser['id'], newPassword: IUser['pas
  */
 export const changeOwnPassword = async (user: IUser['username'], currentPassword: IUser['password'], newPassword: IUser['password']) => {
     // Check if the current password is correct
-    if (!authenticate({ username: user, password: currentPassword })) {
+    const authenticated = await authenticate({ username: user, password: currentPassword });
+    if (!authenticated) {
         return false
     }
 
@@ -85,18 +86,18 @@ export const grantPrivilege = async (userID: IUser['id'], privilege: ACCESS | st
             return "duplicate";
         }
         // tslint:disable:no-console
-        console.log(error);
+        console.error(error);
         return "error";
     }
 };
 
-export const grantPrivileges = async (id: IUser['id'], privileges: IUser['privileges']): Promise<{ granted: string[], notGranted: string[], duplicates: string[] }> => {
+export const grantPrivileges = async (userID: IUser['id'], privileges: IUser['privileges']): Promise<{ granted: string[], notGranted: string[], duplicates: string[] }> => {
     const notGranted: string[] = [];
     const granted: string[] = [];
     const duplicates: string[] = [];
 
     for (const privilege of privileges) {
-        const status = await grantPrivilege(id, privilege)
+        const status = await grantPrivilege(userID, privilege)
 
         if (status === 'duplicate') {
             duplicates.push(privilege);
@@ -112,9 +113,27 @@ export const grantPrivileges = async (id: IUser['id'], privileges: IUser['privil
     return { granted, notGranted, duplicates };
 };
 
-export const revokePrivileges = async (username: IUser['username'], privileges: IUser['privileges']) => {
-    const result = await execute<{ affectedRows: number }>(AuthQueries.revokePrivileges, []);
-    return { result };
+export const revokePrivilege = async (userID: IUser['id'], privilege: ACCESS | string) => {
+    const privilegeID = await execute<[{ id: number }]>(AuthQueries.getPrivilegeId, [privilege]);
+    const result = await execute<{ affectedRows: number }>(AuthQueries.revokePrivilege, [userID, privilegeID[0].id]);
+    return result.affectedRows > 0;
+};
+
+export const revokePrivileges = async (userID: IUser['id'], privileges: IUser['privileges']): Promise<{ revoked: string[], notRevoked: string[] }> => {
+    const revoked: string[] = [];
+    const notRevoked: string[] = [];
+
+    for (const privilege of privileges) {
+        const status = await revokePrivilege(userID, privilege);
+        if (status) {
+            revoked.push(privilege);
+        }
+        else {
+            notRevoked.push(privilege);
+        }
+    }
+
+    return { revoked, notRevoked };
 };
 
 export const deleteUser = async (username: IUser['username']) => {
