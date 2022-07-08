@@ -7,10 +7,9 @@ const router = Router();
 router.route('/all').get(authorize([ACCESS.EMPLOYEES_ALL]), Controller.getAllEmployees);
 
 // C.R.U.D single Employee
-router.route('/:id').get(authorize([ACCESS.EMPLOYEES_GET]), Controller.getEmployee);
-router.route('/:id').put(authorize([ACCESS.EMPLOYEES_UPDATE]), Controller.updateEmployee);
-router.route('/').post(authorize([ACCESS.EMPLOYEES_NEW]), Controller.newEmployee);
-router.route('/:id').delete(authorize([ACCESS.EMPLOYEES_DELETE]), Controller.deleteEmployee);
-
+router.route('/new').post(authorize([ACCESS.EMPLOYEES_NEW]), Controller.newEmployee);
+router.route('/get').get(authorize([ACCESS.EMPLOYEES_GET]), Controller.getEmployee);
+router.route('/update').put(authorize([ACCESS.EMPLOYEES_UPDATE]), Controller.updateEmployee);
+router.route('/delete').delete(authorize([ACCESS.EMPLOYEES_DELETE]), Controller.deleteEmployee);
 
 export default router;
