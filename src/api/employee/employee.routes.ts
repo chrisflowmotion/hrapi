@@ -10,6 +10,5 @@ router.route('/all').get(authorize([ACCESS.EMPLOYEES_ALL]), Controller.getAllEmp
 router.route('/new').post(authorize([ACCESS.EMPLOYEES_NEW]), Controller.newEmployee);
 router.route('/get').get(authorize([ACCESS.EMPLOYEES_GET]), Controller.getEmployee);
 router.route('/update').put(authorize([ACCESS.EMPLOYEES_UPDATE]), Controller.updateEmployee);
-router.route('/delete').delete(authorize([ACCESS.EMPLOYEES_DELETE]), Controller.deleteEmployee);
 
 export default router;
