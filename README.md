@@ -159,7 +159,7 @@ Response:
 
 ### Revoke Privileges
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to users](#users)</sup>
 
 **Endpoint:** api/auth/revokePrivileges
@@ -199,7 +199,7 @@ Response:
 
 ### Get All Employees
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to employees](#employees)</sup>
 
 **Endpoint:** api/employee/all  
@@ -239,7 +239,7 @@ Response:
 
 ### Get Employee
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to employees](#employees)</sup>
 
 **Endpoint:** api/employee/get  
@@ -279,7 +279,7 @@ Response:
 
 ### Update Employee
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to employees](#employees)</sup>
 
 **Endpoint:** api/employee/update  
@@ -318,7 +318,7 @@ Response:
 
 ### New Employee
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to employees](#employees)</sup>
 
 **Endpoint:** api/employee/new  
@@ -354,7 +354,7 @@ Response:
 
 ### Delete Employee
 
-<sup>[back to top](#api)</sup>
+<sup>[back to top](#api)</sup>  
 <sup>[back to employees](#employees)</sup>
 
 **Endpoint:** api/employee/delete  
