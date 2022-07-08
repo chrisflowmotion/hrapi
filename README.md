@@ -202,9 +202,9 @@ Response:
 <sup>[back to top](#api)</sup>
 <sup>[back to employees](#employees)</sup>
 
-**Endpoint:** api/employee/all
+**Endpoint:** api/employee/all  
 **Privilege required:** "getAllEmployees"  
-**Method:** GET
+**Method:** GET  
 **Body:**
 
 ```json
@@ -242,9 +242,9 @@ Response:
 <sup>[back to top](#api)</sup>
 <sup>[back to employees](#employees)</sup>
 
-**Endpoint:** api/employee/get
+**Endpoint:** api/employee/get  
 **Privilege required:** "getEmployee"  
-**Method:** GET
+**Method:** GET  
 **Body:**
 
 ```json
@@ -282,7 +282,7 @@ Response:
 <sup>[back to top](#api)</sup>
 <sup>[back to employees](#employees)</sup>
 
-**Endpoint:** api/employee/update
+**Endpoint:** api/employee/update  
 **Privilege required:** "getAllEmployees"  
 **Method:** PUT  
 **Body:**
@@ -321,7 +321,7 @@ Response:
 <sup>[back to top](#api)</sup>
 <sup>[back to employees](#employees)</sup>
 
-**Endpoint:** api/employee/new
+**Endpoint:** api/employee/new  
 **Privilege required:** "newEmployee"  
 **Method:** POST  
 **Body:**
@@ -357,7 +357,7 @@ Response:
 <sup>[back to top](#api)</sup>
 <sup>[back to employees](#employees)</sup>
 
-**Endpoint:** api/employee/delete
+**Endpoint:** api/employee/delete  
 **Privilege required:** "deleteEmployee"  
 **Method:** DELETE  
 **Body:**
