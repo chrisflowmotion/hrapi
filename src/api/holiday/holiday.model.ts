@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { IEmployee } from '../employee/employee.model';
 
 export enum Status {
     pending = 'PENDING',
@@ -18,9 +19,23 @@ export interface IHolidayRequest {
     employee: string | number;
 };
 
+export interface IUpdateHolidayRequest {
+    id: string | number | undefined;
+
+    name?: string;
+    start_date?: string;
+    end_date?: string;
+
+    days_used?: number;
+}
+
 
 // tslint:disable:no-empty-interface
-export interface IGetHolidayRequest extends Request<{ id: IHolidayRequest['id'] }> { };
-export interface IAddHolidayRequest extends Request { };
-export interface IUpdateHolidayRequest extends Request<{ id: IHolidayRequest['id'] }, any, IHolidayRequest> { };
-export interface IDeleteHolidayRequest extends Request<{ id: IHolidayRequest['id'] }> { };
+export interface IGetHolidayReq extends Request<any, any, { requestID: IHolidayRequest['id'] }> { };
+export interface IGetEmployeeHolidayReq extends Request<any, any, { employeeID: IEmployee['id'] }> { };
+export interface IAddHolidayReq extends Request { };
+export interface IUpdateHolidayReq extends Request<any, any, IUpdateHolidayRequest> { };
+export interface IDeleteHolidayReq extends Request<any, any, { requestID: IHolidayRequest['id'] }> { };
+
+export interface IApproveHolidayReq extends Request<any, any, { requestID: IHolidayRequest['id'] }> { };
+export interface IRejectHolidayReq extends Request<any, any, { requestID: IHolidayRequest['id'] }> { };

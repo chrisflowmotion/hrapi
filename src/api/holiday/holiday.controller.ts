@@ -17,34 +17,34 @@ export const getAllHolidayRequests: RequestHandler = async (req: Request, res: R
 };
 
 // @ts-ignore
-export const getHolidayRequest: RequestHandler = async (req: model.IGetHolidayRequest, res: Response) => {
+export const getHolidayRequest: RequestHandler = async (req: model.IGetHolidayReq, res: Response) => {
     try {
-        const holidayRequest = await HolidayService.getHolidayRequest(req.params.id);
+        const holidayRequest = await HolidayService.getHolidayRequest(req.body.requestID);
         res.status(200).json({ holidayRequest });
     }
     catch (error) {
         console.error('[holiday.controller][getHoliday][Error] ', error);
         res.status(500).json({
-            message: 'There was an error fetching holiday request' + req.params.id + '.'
+            message: 'There was an error fetching holiday request' + req.body.requestID + '.'
         });
     }
 };
 
 // @ts-ignore
-export const getEmployeeHolidayRequests: RequestHandler = async (req: model.IGetHolidayRequest, res: Response) => {
+export const getEmployeeHolidayRequests: RequestHandler = async (req: model.IGetEmployeeHolidayReq, res: Response) => {
     try {
-        const holidayRequest = await HolidayService.getEmployeeHolidayRequests(req.params.id);
-        res.status(200).json({ holidayRequest });
+        const holidayRequests = await HolidayService.getEmployeeHolidayRequests(req.body.employeeID);
+        res.status(200).json({ holidayRequests });
     }
     catch (error) {
         console.error('[holiday.controller][getHoliday][Error] ', error);
         res.status(500).json({
-            message: 'There was an error fetching holiday request' + req.params.id + '.'
+            message: 'There was an error fetching holiday request' + req.body.employeeID + '.'
         });
     }
 };
 
-export const newHolidayRequest: RequestHandler = async (req: model.IAddHolidayRequest, res: Response) => {
+export const newHolidayRequest: RequestHandler = async (req: model.IAddHolidayReq, res: Response) => {
     try {
         const result = await HolidayService.newHolidayRequest(req.body);
 
@@ -59,7 +59,7 @@ export const newHolidayRequest: RequestHandler = async (req: model.IAddHolidayRe
 };
 
 // @ts-ignore
-export const updateHolidayRequest: RequestHandler = async (req: model.IUpdateHolidayRequest, res: Response) => {
+export const updateHolidayRequest: RequestHandler = async (req: model.IUpdateHolidayReq, res: Response) => {
     try {
         const result = await HolidayService.updateHolidayRequest(req.body);
         res.status(200).json({ result });
@@ -67,7 +67,7 @@ export const updateHolidayRequest: RequestHandler = async (req: model.IUpdateHol
     catch (error) {
         console.error('[holiday.controller][updateHoliday][Error] ', error);
         res.status(500).json({
-            message: 'There was an error updating holiday request ' + req.params.id + '.'
+            message: 'There was an error updating holiday request ' + req.body.id + '.'
         });
     }
 };
@@ -87,7 +87,7 @@ export const deleteHolidayRequest: RequestHandler = async (req: model.IDeleteHol
 };
 
 // @ts-ignore
-export const approveHolidayRequest: RequestHandler = async (req: model.IUpdateHolidayRequest, res: Response) => {
+export const approveHolidayRequest: RequestHandler = async (req: model.IApproveHolidayReq, res: Response) => {
     try {
         const result = await HolidayService.approveHolidayRequest(req.params.id);
         res.status(200).json({ result });
@@ -101,7 +101,7 @@ export const approveHolidayRequest: RequestHandler = async (req: model.IUpdateHo
 };
 
 // @ts-ignore
-export const rejectHolidayRequest: RequestHandler = async (req: model.IUpdateHolidayRequest, res: Response) => {
+export const rejectHolidayRequest: RequestHandler = async (req: model.IRejectHolidayReq, res: Response) => {
     try {
         const result = await HolidayService.rejectHolidayRequest(req.params.id);
         res.status(200).json({ result });
