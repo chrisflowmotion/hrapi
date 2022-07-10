@@ -40,5 +40,5 @@ export interface IUpdateEmployee {
 // tslint:disable:no-empty-interface
 export interface IGetEmployeeReq extends Request<any, any, { employeeID: IEmployee['id'] }> { };
 export interface IAddEmployeeReq extends Request { };
-export interface IUpdateEmployeeReq extends Request<any, any, { employee: IUpdateEmployee }> { };
+export interface IUpdateEmployeeReq extends Request<any, any, IUpdateEmployee> { };
 export interface IDeleteEmployeeReq extends Request<any, any, { employeeID: IEmployee['id'] }> { };
