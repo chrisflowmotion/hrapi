@@ -46,13 +46,13 @@ export const newEmployee: RequestHandler = async (req: model.IAddEmployeeReq, re
 // @ts-ignore
 export const updateEmployee: RequestHandler = async (req: model.IUpdateEmployeeReq, res: Response) => {
     try {
-        const result = await EmployeeService.updateEmployee(req.body);
+        const result = await EmployeeService.updateEmployee(req.body.employee);
         res.status(200).json({ result });
     }
     catch (error) {
         console.error('[employee.controller][updateEmployee][Error] ', error);
         res.status(500).json({
-            message: 'There was an error updating employee ' + req.body.id + '.'
+            message: 'There was an error updating employee ' + req.body.employee.id + '.'
         });
     }
 };

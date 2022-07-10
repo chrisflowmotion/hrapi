@@ -46,13 +46,13 @@ export const newUser: RequestHandler = async (req: model.IAddUserReq, res: Respo
 // @ts-ignore
 export const deleteUser: RequestHandler = async (req: model.IDeleteUserReq, res: Response) => {
     try {
-        const result = await AuthService.deleteUser(req.body.username);
+        const result = await AuthService.deleteUser(req.body.userID);
         res.status(200).json({ result });
     }
     catch (error) {
         console.error('[auth.controller][deleteUser][Error] ', error);
         res.status(500).json({
-            message: 'There was an error deleting user ' + req.body.username + '.'
+            message: 'There was an error deleting user ' + req.body.userID + '.'
         });
     }
 };

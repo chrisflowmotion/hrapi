@@ -136,7 +136,7 @@ export const revokePrivileges = async (userID: IUser['id'], privileges: IUser['p
     return { revoked, notRevoked };
 };
 
-export const deleteUser = async (username: IUser['username']) => {
-    const result = await execute<{ affectedRows: number }>(AuthQueries.deleteUser, [username]);
+export const deleteUser = async (userID: IUser['id']) => {
+    const result = await execute<{ affectedRows: number }>(AuthQueries.deleteUser, [userID]);
     return result.affectedRows > 0;
 };

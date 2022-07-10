@@ -5,7 +5,7 @@ export const AuthQueries = {
 
     addUser: `INSERT INTO users (username, password, salt) values(?,?,?)`,
 
-    deleteUser: `DELETE FROM users WHERE username = ?`,
+    deleteUser: `DELETE FROM users WHERE user.id = ?`,
 
     resetPassword: `UPDATE users SET users.password = ?, users.salt = ? WHERE users.id = ?`,
 

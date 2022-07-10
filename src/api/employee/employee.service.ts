@@ -1,6 +1,6 @@
 import { execute } from "../utils/mysql.connector";
 import { EmployeeQueries } from "./employee.queries";
-import { IEmployee } from "./employee.model";
+import { IEmployee, IUpdateEmployee } from "./employee.model";
 
 export const getAllEmployees = async () => {
     return execute<IEmployee[]>(EmployeeQueries.getAllEmployees, []);
@@ -32,7 +32,7 @@ export const newEmployee = async (employee: IEmployee) => {
  * Due to the fact the user can decide which fields they wish to update
  * we need to dynamically build this query instead of having it stored in employee.queries.ts
  */
-export const updateEmployee = async (employee: IEmployee) => {
+export const updateEmployee = async (employee: IUpdateEmployee) => {
     let query = 'UPDATE employees SET ';
     const params = [];
 

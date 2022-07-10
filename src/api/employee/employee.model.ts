@@ -19,7 +19,7 @@ export interface IEmployee {
     emergency_contact: number;
 }
 
-interface IUpdateEmployee {
+export interface IUpdateEmployee {
     id: string | number;
 
     forename?: string;
@@ -38,7 +38,7 @@ interface IUpdateEmployee {
 }
 
 // tslint:disable:no-empty-interface
-export interface IGetEmployeeReq extends Request<{ employeeID: IEmployee['id'] }> { };
+export interface IGetEmployeeReq extends Request<any, any, { employeeID: IEmployee['id'] }> { };
 export interface IAddEmployeeReq extends Request { };
-export interface IUpdateEmployeeReq extends Request<{ employee: IUpdateEmployee }, any, IEmployee> { };
-export interface IDeleteEmployeeReq extends Request<{ employeeID: IEmployee['id'] }> { };
+export interface IUpdateEmployeeReq extends Request<any, any, { employee: IUpdateEmployee }> { };
+export interface IDeleteEmployeeReq extends Request<any, any, { employeeID: IEmployee['id'] }> { };
