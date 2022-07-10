@@ -66,7 +66,7 @@ export const resetPassword: RequestHandler = async (req: model.IResetPasswordReq
     catch (error) {
         console.error('[auth.controller][resetPassword][Error] ', error);
         res.status(500).json({
-            message: 'There was an error updating password for user ' + req.body.username + '.'
+            message: 'There was an error updating password for user ' + req.body.userID + '.'
         });
     }
 };
@@ -100,7 +100,7 @@ export const grantPrivileges: RequestHandler = async (req: model.IGrantPrivilege
 };
 
 // @ts-ignore
-export const grantPrivilege: RequestHandler = async (req: model.IGrantPrivilegesReq, res: Response) => {
+export const grantPrivilege: RequestHandler = async (req: model.IGrantPrivilegeReq, res: Response) => {
     try {
         const result = await AuthService.grantPrivilege(req.body.userID, req.body.privilege);
         res.status(200).json({ result });
@@ -136,7 +136,7 @@ export const revokePrivilege: RequestHandler = async (req: model.IRevokePrivileg
     catch (error) {
         console.error('[auth.controller][revokePrivilege][Error] ', error);
         res.status(500).json({
-            message: 'There was an error revoking privilege ' + req.body.privilege + ' from user ' + req.body.username + '.'
+            message: 'There was an error revoking privilege ' + req.body.privilege + ' from user ' + req.body.userID + '.'
         });
     }
 };

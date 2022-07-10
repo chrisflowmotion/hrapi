@@ -18,8 +18,8 @@ export interface IDeleteUserReq extends Request<any, any, { userID: IUser['id'] 
 export interface IResetPasswordReq extends Request<any, any, { userID: IUser['id'], newPassword: IUser['password'] }> { };
 export interface IChangeOwnPassword extends Request<{ username: IUser['username'], currentPassword: IUser['password'], newPassword: IUser['password'] }> { };
 
-export interface IGrantPrivilegeReq extends Request<any, any, { userID: IUser['id'], privileges: ACCESS }> { };
-export interface IGrantPrivilegesReq extends Request<any, any, { userID: IUser['id'], privileges: IUser['privileges'][] }> { };
+export interface IGrantPrivilegeReq extends Request<any, any, { userID: IUser['id'], privilege: ACCESS }> { };
+export interface IGrantPrivilegesReq extends Request<any, any, { userID: IUser['id'], privileges: IUser['privileges'] }> { };
 
-export interface IRevokePrivilegeReq extends Request<any, any, { userID: IUser['id'], privilege: IUser['privileges'] }> { };
-export interface IRevokePrivilegesReq extends Request<any, any, { userID: IUser['id'], privileges: IUser['privileges'][] }> { };
+export interface IRevokePrivilegeReq extends Request<any, any, { userID: IUser['id'], privilege: ACCESS }> { };
+export interface IRevokePrivilegesReq extends Request<any, any, { userID: IUser['id'], privileges: IUser['privileges'] }> { };
