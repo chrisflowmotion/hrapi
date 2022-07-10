@@ -34,6 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
         username: 'Chris',
         accessTypes: [
             ACCESS.USERS_ALL,
+            ACCESS.USERS_NEW,
             ACCESS.USERS_CHANGE_OWN_PASSWORD,
             ACCESS.USERS_RESET_PASSWORD,
             ACCESS.USERS_GRANT_PRIVILEGES,
@@ -43,7 +44,16 @@ if (process.env.NODE_ENV !== 'production') {
             ACCESS.EMPLOYEES_GET,
             ACCESS.EMPLOYEES_NEW,
             ACCESS.EMPLOYEES_DELETE,
-            ACCESS.EMPLOYEES_UPDATE
+            ACCESS.EMPLOYEES_UPDATE,
+
+            ACCESS.HOLIDAYS_ALL,
+            ACCESS.HOLIDAYS_GET_REQUEST,
+            ACCESS.HOLIDAYS_GET_EMPLOYEE_REQUESTS,
+            ACCESS.HOLIDAYS_NEW_REQUEST,
+            ACCESS.HOLIDAYS_UPDATE_REQUEST,
+            ACCESS.HOLIDAYS_DELETE_REQUEST,
+            ACCESS.HOLIDAYS_APPROVE_REQUEST,
+            ACCESS.HOLIDAYS_REJECT_REQUEST
         ]
     };
     // tslint:disable:no-console
