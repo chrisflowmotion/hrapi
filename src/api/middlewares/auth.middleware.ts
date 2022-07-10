@@ -16,7 +16,7 @@ export enum ACCESS {
     EMPLOYEES_UPDATE = "updateEmployee",
     EMPLOYEES_DELETE = "deleteEmployee",
 
-    HOLIDAYS_ALL = "getAllHolidays",
+    HOLIDAYS_ALL = "getAllHolidayRequests",
     HOLIDAYS_GET_REQUEST = "getHolidayRequest",
     HOLIDAYS_GET_EMPLOYEE_REQUESTS = "getEmployeeHolidayRequests",
     HOLIDAYS_UPDATE_REQUEST = "updateHolidayRequest",
