@@ -2,21 +2,25 @@
 
 - [Users](#users)
 - [Employees](#employees)
+- [Holiday Requests](#holiday-requests)
 
 ---
 
 ## Users
 
-- [Login](#login)
 - [Get all users](#get-all-users)
-- [Change password](#change-own-password)
+- [Login](#login)
 - [Reset Password](#reset-password)
+- [Change own password](#change-own-password)
 - [Grant Privileges](#grant-privileges)
 - [Revoke Privileges](#revoke-privileges)
 
 ---
 
 ### Get all users
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to users](#users)</sup>
 
 **Endpoint**: api/auth/  
 **Method:** GET  
@@ -189,11 +193,12 @@ Response:
 
 ## Employees
 
-- [Get all employees](#get-all-employees)
-- [Get employee by ID](#get-employee)
-- [Update an employee](#update-employee)
-- [Create new employee](#new-employee)
-- [Delete employee](#delete-employee)
+<sup>[back to top](#api)</sup>
+
+- [Get All Employees](#get-all-employees)
+- [Get Employee](#get-employee)
+- [Update Employee](#update-employee)
+- [New Employee](#new-employee)
 
 ---
 
@@ -352,23 +357,148 @@ Response:
 
 ---
 
-### Delete Employee
+## Holiday Requests
+
+<sup>[back to top](#api)</sup>
+
+- [Get All Requests](#get-all-requests)
+- [Get Request](#get-holiday-request)
+- [Get Employee Requests](#get-employee-holiday-requests)
+- [Update Request](#update-holiday-request)
+- [New Request](#new-holiday-request)
+- [Delete Request](#delete-holiday-request)
+- [Approve Request](#approve-holiday-request)
+- [Reject Request](#reject-holiday-request)
+
+### Get all Holiday Requests
+
+**Endpoint**: api/holiday/all
+**Method:** GET  
+**Privilege required:** "geAllHolidayRequests"
+**Body:**
+
+```
+ {}
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    }
+    ...
+  ]
+}
+```
+
+---
+
+### Get Holiday Request
 
 <sup>[back to top](#api)</sup>  
-<sup>[back to employees](#employees)</sup>
+<sup>[back to holiday requests](#holiday-requests)</sup>
 
-**Endpoint:** api/employee/delete  
-**Privilege required:** "deleteEmployee"  
-**Method:** DELETE  
+**Endpoint**: api/holiday/get
+**Method:** GET  
+**Privilege required:** "getHolidayRequest"  
+**Body:**
+
+```
+ {
+    "requestID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequest": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    }
+  ]
+}
+```
+
+---
+
+### Get Employee Holiday Requests
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/get/employee  
+**Method:** GET  
+**Privilege required:** "getEmployeeHolidayRequests"  
+**Body:**
+
+```
+ {
+    "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### Update Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+_Note: Status can only be updated via accept / reject request_
+
+**Endpoint**: api/holiday/update  
+**Method:** PUT  
+**Privilege required:** "updateHolidayRequest"  
 **Body:**
 
 ```json
 {
-    "employeeID":
-}
+    "id": , // The only required field
+
+    // Include any of the below that you want to update
+    "name": "",
+    "start_date": "",
+    "end_date": "",
+    "days_used": "",
 ```
 
-**Response:**
+Response:
 
 ```json
 {
@@ -377,3 +507,141 @@ Response:
 ```
 
 ---
+
+### New Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/new  
+**Method:** POST  
+**Privilege required:** "newHolidayRequest"  
+**Body:**
+
+```json
+ {
+    "name": "",
+    "start_date":"",
+    "end_date":"",
+    "days_used":
+ }
+```
+
+Response:
+
+```json
+{
+    "result":true/false
+}
+```
+
+---
+
+### Delete Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/delete  
+**Method:** DELETE  
+**Privilege required:** "deleteHolidayRequest"  
+**Body:**
+
+```
+ {
+    "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### Approve Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/approve  
+**Method:** PUT  
+**Privilege required:** "approveHolidayRequest"  
+**Body:**
+
+```
+ {
+    "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### Reject Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/reject  
+**Method:** PUT  
+**Privilege required:** "rejectHolidayRequest"  
+**Body:**
+
+```
+ {
+    "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    },
+    ...
+  ]
+}
+```
