@@ -16,25 +16,31 @@ export const getPassword = async (username: IUser['username']) => {
 };
 
 export const authenticate = async (credentials: { username: IUser['username'], password: IUser['password'] }): Promise<boolean | Payload> => {
-    const result = await execute<[{ id: IUser['id'], password: IUser['password'], salt: IUser['salt'] }]>(AuthQueries.getPassword, [credentials.username]);
+    try {
 
-    if (result.length !== 1) {
+        const result = await execute<[{ id: IUser['id'], password: IUser['password'], salt: IUser['salt'] }]>(AuthQueries.getPassword, [credentials.username]);
+
+        if (!result || result.length !== 1) {
+            return false;
+        }
+
+        const encryptedPassword = encrypt(credentials.password, result[0].salt);
+
+        if (result[0].password === encryptedPassword) {
+            const user = await execute<[{ privileges: string }]>(AuthQueries.getPrivileges, [result[0].id]);
+            const privileges = user[0].privileges;
+            if (!privileges) {
+                // tslint:disable:no-console
+                console.warn(chalk.bold.yellow(`User ${credentials.username} has no privileges`));
+            };
+            return { userID: result[0].id, username: credentials.username, accessTypes: privileges ? user[0].privileges.split(",") : [] };
+        }
+
         return false;
     }
-
-    const encryptedPassword = encrypt(credentials.password, result[0].salt);
-
-    if (result[0].password === encryptedPassword) {
-        const user = await execute<[{ privileges: string }]>(AuthQueries.getPrivileges, [result[0].id]);
-        const privileges = user[0].privileges;
-        if (!privileges) {
-            // tslint:disable:no-console
-            console.warn(chalk.bold.yellow(`User ${credentials.username} has no privileges`));
-        };
-        return { userID: result[0].id, username: credentials.username, accessTypes: privileges ? user[0].privileges.split(",") : [] };
+    catch (error) {
+        return false;
     }
-
-    return false;
 };
 
 export const newUser = async (user: { username: IUser['username'], password: IUser['password'], privileges: IUser['privileges'] }) => {

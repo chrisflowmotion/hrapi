@@ -22,12 +22,11 @@ export const authenticateUser: RequestHandler = async (req: model.IAuthenticateU
     try {
         const payload: boolean | Payload = await AuthService.authenticate(req.body);
 
-        if (typeof payload === "object") {
+        if (typeof payload !== "boolean") {
             const userToken = generateToken(payload);
             res.status(200).json({ userToken });
         }
-
-        return false;
+        res.status(200).json({ authenticated: false })
     }
     catch (error) {
         console.error('[auth.controller][authenticateUser][Error] ', error);
