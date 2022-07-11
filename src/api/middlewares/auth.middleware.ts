@@ -23,7 +23,15 @@ export enum ACCESS {
     HOLIDAYS_NEW_REQUEST = "newHolidayRequest",
     HOLIDAYS_DELETE_REQUEST = "deleteHolidayRequest",
     HOLIDAYS_APPROVE_REQUEST = "approveHolidayRequest",
-    HOLIDAYS_REJECT_REQUEST = "rejectHolidayRequest"
+    HOLIDAYS_REJECT_REQUEST = "rejectHolidayRequest",
+
+    SICK_DAYS_ALL = "getAllSickDays",
+    SICK_DAYS_GET = "getSickDay",
+    SICK_DAYS_GET_EMPLOYEE = "getEmployeeSickDays",
+    SICK_DAYS_UPDATE = "updateSickDay",
+    SICK_DAYS_NEW = "newSickDay",
+    SICK_DAYS_DELETE = "deleteSickDay",
+
 }
 /**
  * middleware to check whether user has access to a specific endpoint

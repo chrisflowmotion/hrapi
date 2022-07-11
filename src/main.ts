@@ -53,7 +53,15 @@ if (process.env.NODE_ENV !== 'production') {
             ACCESS.HOLIDAYS_UPDATE_REQUEST,
             ACCESS.HOLIDAYS_DELETE_REQUEST,
             ACCESS.HOLIDAYS_APPROVE_REQUEST,
-            ACCESS.HOLIDAYS_REJECT_REQUEST
+            ACCESS.HOLIDAYS_REJECT_REQUEST,
+
+            ACCESS.SICK_DAYS_ALL,
+            ACCESS.SICK_DAYS_GET,
+            ACCESS.SICK_DAYS_GET_EMPLOYEE,
+            ACCESS.SICK_DAYS_UPDATE,
+            ACCESS.SICK_DAYS_NEW,
+            ACCESS.SICK_DAYS_DELETE
+
         ]
     };
     // tslint:disable:no-console
