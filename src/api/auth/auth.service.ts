@@ -1,8 +1,10 @@
+import chalk from 'chalk';
 import { execute } from "../utils/mysql.connector";
 import { AuthQueries } from "./auth.queries";
 import { IUser } from "./auth.model";
 import { generateSalt, encrypt } from "./auth.security";
 import { ACCESS } from '../middlewares/auth.middleware';
+import { Payload } from "../utils/jwt.utils";
 
 
 export const getAllUsers = async () => {
@@ -10,18 +12,29 @@ export const getAllUsers = async () => {
 };
 
 export const getPassword = async (username: IUser['username']) => {
-    return execute<IUser['password']>(AuthQueries.getPassword, [username]);
+    return execute<{ password: IUser['password'], salt: IUser['salt'] }>(AuthQueries.getPassword, [username]);
 };
 
-export const authenticate = async (credentials: { username: IUser['username'], password: IUser['password'] }) => {
-    const result = await execute<[{ password: IUser['password'], salt: IUser['salt'] }]>(AuthQueries.getPassword, [credentials.username]);
+export const authenticate = async (credentials: { username: IUser['username'], password: IUser['password'] }): Promise<boolean | Payload> => {
+    const result = await execute<[{ id: IUser['id'], password: IUser['password'], salt: IUser['salt'] }]>(AuthQueries.getPassword, [credentials.username]);
 
     if (result.length !== 1) {
         return false;
     }
 
     const encryptedPassword = encrypt(credentials.password, result[0].salt);
-    return result[0].password === encryptedPassword;
+
+    if (result[0].password === encryptedPassword) {
+        const user = await execute<[{ privileges: string }]>(AuthQueries.getPrivileges, [result[0].id]);
+        const privileges = user[0].privileges;
+        if (!privileges) {
+            // tslint:disable:no-console
+            console.warn(chalk.bold.yellow(`User ${credentials.username} has no privileges`));
+        };
+        return { userID: result[0].id, username: credentials.username, accessTypes: privileges ? user[0].privileges.split(",") : [] };
+    }
+
+    return false;
 };
 
 export const newUser = async (user: { username: IUser['username'], password: IUser['password'], privileges: IUser['privileges'] }) => {

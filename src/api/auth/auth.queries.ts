@@ -11,7 +11,11 @@ export const AuthQueries = {
 
     changePassword: `UPDATE users SET users.password = ?, users.salt = ? WHERE users.username = ?`,
 
-    getPassword: `SELECT password, salt from hr_app.users where username = ?`,
+    getPassword: `SELECT users.id, users.password, users.salt from users where username = ?`,
+
+    getPrivileges: `SELECT GROUP_CONCAT(privileges.privilege SEPARATOR ',') privileges FROM users
+                    INNER JOIN userprivileges ON users.id = userprivileges.user
+                    INNER JOIN PRIVILEGES ON PRIVILEGES.id = userprivileges.privilege`,
 
     grantPrivilege: `INSERT INTO userprivileges (user, privilege) values(?, ?)`,
 

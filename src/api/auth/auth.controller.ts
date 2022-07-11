@@ -1,5 +1,6 @@
 // tslint:disable:no-console
 import { Request, Response, RequestHandler } from "express";
+import { generateToken, Payload } from "../utils/jwt.utils";
 import * as model from "./auth.model";
 import * as AuthService from "./auth.service";
 
@@ -19,8 +20,14 @@ export const getAllUsers: RequestHandler = async (req: Request, res: Response) =
 // @ts-ignore
 export const authenticateUser: RequestHandler = async (req: model.IAuthenticateUser, res: Response) => {
     try {
-        const authenticated = await AuthService.authenticate(req.body);
-        res.status(200).json({ authenticated });
+        const payload: boolean | Payload = await AuthService.authenticate(req.body);
+
+        if (typeof payload === "object") {
+            const userToken = generateToken(payload);
+            res.status(200).json({ userToken });
+        }
+
+        return false;
     }
     catch (error) {
         console.error('[auth.controller][authenticateUser][Error] ', error);

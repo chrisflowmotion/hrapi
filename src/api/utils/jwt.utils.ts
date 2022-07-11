@@ -1,8 +1,10 @@
 import { sign, SignOptions, verify } from "jsonwebtoken";
+import { IUser } from "../auth/auth.model";
 import dotenv from "dotenv";
 
 export interface Payload {
-    username: string;
+    username: IUser['username'];
+    userID: IUser['id'],
     accessTypes: string[];
 };
 
