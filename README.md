@@ -71,9 +71,20 @@ Response:
 
 **Response:**
 
+_Unsuccessful_
+
 ```json
 {
-    "authenticated": true / false
+  "authenticated": false
+}
+```
+
+_Successful_
+This token needs to be included in the header as a bearer token
+
+```json
+{
+  "userToken": ""
 }
 ```
 
