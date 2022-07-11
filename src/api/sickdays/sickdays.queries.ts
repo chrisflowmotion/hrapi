@@ -1,13 +1,11 @@
 export const SickDayQueries = {
-    getAllSickDays: `SELECT * FROM hr_app.sickdays`,
+    getAllSickDays: `SELECT * FROM sickdays`,
 
-    getEmployeeSickDays: `SELECT * FROM hr_app.sickdays WHERE employee = ?`,
+    getEmployeeSickDays: `SELECT * FROM sickdays WHERE employee = ?`,
 
-    getSickDay: `SELECT * FROM hr_app.sickdays WHERE id = ?`,
+    getSickDay: `SELECT * FROM sickdays WHERE id = ?`,
 
-    addSickDay: `INSERT INTO hr_app.sickdays (start_date, end_date, days_used, reason, employee) values (?,?,?,?,?)`,
+    addSickDay: `INSERT INTO sickdays (start_date, end_date, days_used, reason, employee) values (?,?,?,?,?)`,
 
-    updateSickDay: `UPDATE hr_app.sickdays SET start_date = ?, end_date = ? , days_used = ?, reason = ? WHERE id = ?`,
-
-    deleteSickDay: `DELETE FROM hr_app.sickdays WHERE id = ?`
+    deleteSickDay: `DELETE FROM sickdays WHERE id = ?`
 };

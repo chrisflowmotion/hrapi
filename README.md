@@ -2,9 +2,12 @@
 
 All response examples shown below presume a status of 200.
 
+Response types: Strings are indicated by "", otherwise number.
+
 - [Users](#users)
 - [Employees](#employees)
 - [Holiday Requests](#holiday-requests)
+- [Sick Days](#sick-days)
 
 ---
 
@@ -615,3 +618,200 @@ Response:
     "result": true / false
 }
 ```
+
+## Sick Days
+
+<sup>[back to top](#api)</sup>
+
+- [Get All Sick Days](#get-all-sick-days)
+- [Get Sick Day](#get-Sick-Day)
+- [Get Employee Sick Days](#get-employee-sick-days)
+- [Update Sick Day](#update-sick-days)
+- [New Sick Day](#new-sick-day)
+- [Delete Sick Day](#delete-sick-day)
+
+### Get all Sick Days
+
+**Endpoint**: api/sickday/all  
+**Method:** GET  
+**Privilege required:** "getAllSickDays"  
+**Body:**
+
+```json
+{}
+```
+
+Response:
+
+```json
+{
+  "sickdays": [
+    {
+      "id": ,
+      "start_date": "",
+      "end_date": "",
+      "days_used": ,
+      "reason": "",
+      "employee":
+    }
+  ]
+}
+```
+
+---
+
+### Get Sick Day
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/sickday/get  
+**Method:** GET  
+**Privilege required:** "getSickDay"  
+**Body:**
+
+```
+ {
+    "sickDayID":
+ }
+```
+
+Response:
+
+```json
+{
+  "sickDay": [
+    {
+      "id": ,
+      "start_date": "",
+      "end_date": "",
+      "days_used": ,
+      "reason": "",
+      "employee":
+    }
+  ]
+}
+```
+
+---
+
+### Get Employee Sick Days
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/sickday/get/employee  
+**Method:** GET  
+**Privilege required:** "geEmployeeSickDays"  
+**Body:**
+
+```
+ {
+    "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "sickDays": [
+    {
+      "id": ,
+      "start_date": "",
+      "end_date": "",
+      "days_used": ,
+      "reason": "",
+      "employee":
+    }
+  ]
+}
+```
+
+---
+
+### Update Sick Day
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/sickday/update  
+**Method:** PUT  
+**Privilege required:** "updateSickDay"  
+**Body:**
+
+```json
+{
+    "id": , // The only required field
+
+    // Include any of the below that you want to update
+    "start_date": "",
+    "end_date": "",
+    "reason": "",
+    "days_used": "",
+```
+
+Response:
+
+```json
+{
+    "result": true / false
+}
+```
+
+---
+
+### New Sick Day
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/holiday/new  
+**Method:** POST  
+**Privilege required:** "newSickDay"  
+**Body:**
+
+```json
+ {
+    "name": "",
+    "start_date":"",
+    "end_date":"",
+    "days_used":
+ }
+```
+
+Response:
+
+```json
+{
+    "result":true/false
+}
+```
+
+---
+
+### Delete Sick Day
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/holiday/delete  
+**Method:** DELETE  
+**Privilege required:** "deleteSickDay"  
+**Body:**
+
+```json
+ {
+    "sickDayID":
+ }
+```
+
+Response:
+
+```json
+{
+    "result": true / false
+}
+```
+
+---
