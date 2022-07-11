@@ -31,7 +31,8 @@ if (process.env.NODE_ENV !== 'production') {
      * the console
      */
     const payload: Payload = {
-        username: 'Chris',
+        username: 'Chris.Hayden',
+        userID: 7,
         accessTypes: [
             ACCESS.USERS_ALL,
             ACCESS.USERS_NEW,
