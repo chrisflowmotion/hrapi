@@ -1,18 +1,18 @@
 import { Status } from "./holiday.model";
 
 export const HolidayQueries = {
-    getAllHolidayRequests: `SELECT * FROM hr_app.holidayrequests`,
+    getAllHolidayRequests: `SELECT * FROM holidayrequests`,
 
-    getEmployeeHolidayRequests: `SELECT * FROM hr_app.holidayrequests WHERE employee = ?`,
+    getEmployeeHolidayRequests: `SELECT * FROM holidayrequests WHERE employee = ?`,
 
-    getHolidayRequest: `SELECT * FROM hr_app.holidayrequests WHERE id = ?`,
+    getHolidayRequest: `SELECT * FROM holidayrequests WHERE id = ?`,
 
-    addHolidayRequest: `INSERT INTO hr_app.holidayrequests (name, start_date, end_date, Status, days_used, employee)
-    values(?, ?, ?, ?, ?, ?)`,
+    addHolidayRequest: `INSERT INTO holidayrequests (name, start_date, end_date, Status, days_used, employee)
+    values(?, ?, ?, '${Status.pending}', ?, ?)`,
 
-    deleteHolidayRequest: `DELETE FROM hr_app.holidayrequests WHERE id = ?`,
+    deleteHolidayRequest: `DELETE FROM holidayrequests WHERE id = ?`,
 
-    approveHolidayRequest: `UPDATE hr_app.holidayrequests SET status = '${Status.accepted}' WHERE id = ?`,
+    approveHolidayRequest: `UPDATE holidayrequests SET status = '${Status.accepted}' WHERE id = ?`,
 
-    rejectHolidayRequest: `UPDATE hr_app.holidayrequests SET status = '${Status.rejected}' WHERE id = ?`
+    rejectHolidayRequest: `UPDATE holidayrequests SET status = '${Status.rejected}' WHERE id = ?`
 };

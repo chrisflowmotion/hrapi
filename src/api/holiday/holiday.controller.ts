@@ -75,13 +75,13 @@ export const updateHolidayRequest: RequestHandler = async (req: model.IUpdateHol
 // @ts-ignore
 export const deleteHolidayRequest: RequestHandler = async (req: model.IDeleteHolidayRequest, res: Response) => {
     try {
-        const result = await HolidayService.deleteHolidayRequest(req.params.id);
+        const result = await HolidayService.deleteHolidayRequest(req.body.requestID);
         res.status(200).json({ result });
     }
     catch (error) {
         console.error('[holiday.controller][updateHoliday][Error] ', error);
         res.status(500).json({
-            message: 'There was an error updating holiday request ' + req.params.id + '.'
+            message: 'There was an error updating holiday request ' + req.body.requestID + '.'
         });
     }
 };
@@ -89,13 +89,13 @@ export const deleteHolidayRequest: RequestHandler = async (req: model.IDeleteHol
 // @ts-ignore
 export const approveHolidayRequest: RequestHandler = async (req: model.IApproveHolidayReq, res: Response) => {
     try {
-        const result = await HolidayService.approveHolidayRequest(req.params.id);
+        const result = await HolidayService.approveHolidayRequest(req.body.requestID);
         res.status(200).json({ result });
     }
     catch (error) {
         console.error('[holiday.controller][approveHolidayRequest][Error] ', error);
         res.status(500).json({
-            message: 'There was an error approving holiday request ' + req.params.id + '.'
+            message: 'There was an error approving holiday request ' + req.body.requestID + '.'
         });
     }
 };
@@ -103,13 +103,13 @@ export const approveHolidayRequest: RequestHandler = async (req: model.IApproveH
 // @ts-ignore
 export const rejectHolidayRequest: RequestHandler = async (req: model.IRejectHolidayReq, res: Response) => {
     try {
-        const result = await HolidayService.rejectHolidayRequest(req.params.id);
+        const result = await HolidayService.rejectHolidayRequest(req.body.requestID);
         res.status(200).json({ result });
     }
     catch (error) {
         console.error('[holiday.controller][rejectHolidayReequest][Error] ', error);
         res.status(500).json({
-            message: 'There was an error rejecting holiday request' + req.params.id + '.'
+            message: 'There was an error rejecting holiday request' + req.body.requestID + '.'
         });
     }
 };

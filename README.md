@@ -1,5 +1,7 @@
 # API
 
+All response examples shown below presume a status of 200.
+
 - [Users](#users)
 - [Employees](#employees)
 - [Holiday Requests](#holiday-requests)
@@ -513,6 +515,7 @@ Response:
 <sup>[back to top](#api)</sup>  
 <sup>[back to holiday requests](#holiday-requests)</sup>
 
+_note: Status will be set to PENDING and the request will be linked to the employee making it_  
 **Endpoint**: api/holiday/new  
 **Method:** POST  
 **Privilege required:** "newHolidayRequest"  
@@ -547,9 +550,9 @@ Response:
 **Privilege required:** "deleteHolidayRequest"  
 **Body:**
 
-```
+```json
  {
-    "employeeID":
+    "requestID":
  }
 ```
 
@@ -557,18 +560,7 @@ Response:
 
 ```json
 {
-  "holidayRequests": [
-    {
-      "id": ,
-      "name": "",
-      "start_date": "",
-      "end_date": "",
-      "status": "PENDING | ACCEPTED | REJECTED",
-      "days_used": ,
-      "employee":
-    },
-    ...
-  ]
+    "result": true / false
 }
 ```
 
@@ -586,7 +578,7 @@ Response:
 
 ```
  {
-    "employeeID":
+    "requestID":
  }
 ```
 
@@ -594,18 +586,7 @@ Response:
 
 ```json
 {
-  "holidayRequests": [
-    {
-      "id": ,
-      "name": "",
-      "start_date": "",
-      "end_date": "",
-      "status": "PENDING | ACCEPTED | REJECTED",
-      "days_used": ,
-      "employee":
-    },
-    ...
-  ]
+    "result": true / false
 }
 ```
 
@@ -623,7 +604,7 @@ Response:
 
 ```
  {
-    "employeeID":
+    "requestID":
  }
 ```
 
@@ -631,17 +612,6 @@ Response:
 
 ```json
 {
-  "holidayRequests": [
-    {
-      "id": ,
-      "name": "",
-      "start_date": "",
-      "end_date": "",
-      "status": "PENDING | ACCEPTED | REJECTED",
-      "days_used": ,
-      "employee":
-    },
-    ...
-  ]
+    "result": true / false
 }
 ```
