@@ -9,6 +9,10 @@ export const HolidayQueries = {
 	INNER JOIN employees AS emp
 	ON requests.employee = emp.id AND emp.acc = ?`,
 
+  getUserHolidayRequests: `SELECT GROUP_CONCAT(requests.id SEPARATOR ',') ids FROM holidayrequests AS requests
+	INNER JOIN employees AS emp
+	ON requests.employee = emp.id AND emp.acc = ?`,
+
   getHolidayRequest: `SELECT * FROM holidayrequests WHERE id = ?`,
 
   addHolidayRequest: `INSERT INTO holidayrequests (name, start_date, end_date, Status, days_used, employee)

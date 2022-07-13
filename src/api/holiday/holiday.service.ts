@@ -87,6 +87,28 @@ export const updateHolidayRequest = async (
   return result.affectedRows > 0;
 };
 
+export const updateOwnHolidayRequest = async (
+  userID: IUser['id'],
+  request: IUpdateHolidayRequest
+) => {
+  // Get a comma separated string of request IDs that belong to userID
+  const requestIDs = await execute<[{ ids: string }]>(
+    HolidayQueries.getUserHolidayRequests,
+    [userID]
+  );
+  // If we have a result
+  if (requestIDs.length === 1) {
+    // tslint:disable:no-console
+    console.log(requestIDs);
+    console.log(request.id);
+    // Check to see if the request the user is trying to update is one that belongs to the user
+    if (requestIDs[0].ids.split(',').includes(request.id.toString())) {
+      return updateHolidayRequest(request);
+    }
+  }
+  return false;
+};
+
 export const approveHolidayRequest = async (
   requestID: IHolidayRequest['id']
 ) => {

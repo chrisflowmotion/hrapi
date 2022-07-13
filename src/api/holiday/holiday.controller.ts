@@ -121,6 +121,31 @@ export const updateHolidayRequest: RequestHandler = async (
 };
 
 // @ts-ignore
+export const updateOwnRequests: RequestHandler = async (
+  req: model.IUpdateHolidayReq,
+  res: Response
+) => {
+  try {
+    const myID = getTokenUserId(req.headers.authorization);
+    if (myID && typeof myID === 'number') {
+      const result = await HolidayService.updateOwnHolidayRequest(
+        myID,
+        req.body
+      );
+      res.status(200).json({ result });
+      return;
+    }
+    res.status(200).json({ result: false });
+  } catch (error) {
+    console.error('[holiday.controller][updateHoliday][Error] ', error);
+    res.status(500).json({
+      message:
+        'There was an error updating holiday request ' + req.body.id + '.',
+    });
+  }
+};
+
+// @ts-ignore
 export const deleteHolidayRequest: RequestHandler = async (
   req: model.IDeleteHolidayReq,
   res: Response
