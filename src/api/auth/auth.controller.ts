@@ -24,9 +24,11 @@ export const authenticateUser: RequestHandler = async (req: model.IAuthenticateU
 
         if (typeof payload !== "boolean") {
             const userToken = generateToken(payload);
-            res.status(200).json({ userToken });
+            res.status(200).json({ authenticated: true, token: userToken });
+            return
         }
         res.status(200).json({ authenticated: false })
+        return
     }
     catch (error) {
         console.error('[auth.controller][authenticateUser][Error] ', error);

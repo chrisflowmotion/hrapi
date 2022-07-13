@@ -213,6 +213,7 @@ This token needs to be included in the header as a bearer token
 
 - [Get All Employees](#get-all-employees)
 - [Get Employee](#get-employee)
+- [Get Employee by User ID](#get-employee-by-user-id)
 - [Update Employee](#update-employee)
 - [New Employee](#new-employee)
 
@@ -279,6 +280,45 @@ This token needs to be included in the header as a bearer token
 ```json
 {
     "employee":[
+        {
+            "forename": "",
+            "middle_name": "",
+            "surname": "",
+            "email": "",
+            "phone": "",
+            "address_line_1": "",
+            "address_line_2": "",
+            "address_line_3": "",
+            "address_city": "",
+            "address_postcode": "",
+            "holiday_allowance": ,
+        }
+    ]
+}
+```
+
+---
+
+### Get Employee By User ID
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to employees](#employees)</sup>
+
+_Note: Requires auth token to be set_
+**Endpoint:** api/employee/own  
+**Privilege required:**  
+**Method:** GET  
+**Body:**
+
+```json
+{}
+```
+
+**Response:**
+
+```json
+{
+    "employee":[ // Empty array if not successful
         {
             "forename": "",
             "middle_name": "",
