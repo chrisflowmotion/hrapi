@@ -458,6 +458,7 @@ _Note: Requires auth token to be set_
 - [Get All Requests](#get-all-requests)
 - [Get Request](#get-holiday-request)
 - [Get Employee Requests](#get-employee-holiday-requests)
+- [Get Own Requests](#get-own-holiday-requests)
 - [Update Request](#update-holiday-request)
 - [New Request](#new-holiday-request)
 - [Delete Request](#delete-holiday-request)
@@ -545,6 +546,44 @@ Response:
 ```
  {
     "employeeID":
+ }
+```
+
+Response:
+
+```json
+{
+  "holidayRequests": [
+    {
+      "id": ,
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "status": "PENDING | ACCEPTED | REJECTED",
+      "days_used": ,
+      "employee":
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### Get Own Holiday Requests
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+**Endpoint**: api/holiday/own
+**Method:** GET  
+**Privilege required:**
+**Body:**
+
+_Note: Requires authorization token to be set_
+
+```
+ {
  }
 ```
 
