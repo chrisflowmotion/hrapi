@@ -34,7 +34,7 @@ export const getOwnProfile: RequestHandler = async (
 
     res.status(200).json({ message: 'Could not get ID from auth token' });
   } catch (error) {
-    console.error('[employee.controller][getEmployee][Error] ', error);
+    console.error('[employee.controller][getOwnProfile][Error] ', error);
     res.status(500).json({
       message: 'There was an error fetching your profile',
     });
@@ -59,7 +59,7 @@ export const updateOwnProfile: RequestHandler = async (
     }
     res.status(200).json({ message: 'Could not get ID from auth token' });
   } catch (error) {
-    console.error('[employee.controller][getEmployee][Error] ', error);
+    console.error('[employee.controller][updateOwnProfile][Error] ', error);
     res.status(500).json({
       message: 'There was an error updating your profile',
     });
