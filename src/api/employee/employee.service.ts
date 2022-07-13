@@ -39,8 +39,16 @@ export const newEmployee = async (employee: IEmployee) => {
 /**
  * Due to the fact the user can decide which fields they wish to update
  * we need to dynamically build this query instead of having it stored in employee.queries.ts
+ *
+ * @param userID {boolean} - If true, update by userID. If false, update by EmployeeID
  */
-export const updateEmployee = async (employee: IUpdateEmployee) => {
+export const updateEmployee = async (
+  employee: IUpdateEmployee,
+  userID: boolean = false
+) => {
+  // tslint:disable:no-console
+  console.log(employee);
+
   let query = 'UPDATE employees SET ';
   const params = [];
 
@@ -102,8 +110,13 @@ export const updateEmployee = async (employee: IUpdateEmployee) => {
   // Get rid of the last comma
   query = query.substring(0, query.length - 1);
 
-  query += ' WHERE employees.id = ?';
-  params.push(employee.id);
+  if (userID) {
+    query += ' WHERE employees.acc = ?';
+    params.push(employee.id);
+  } else {
+    query += ' WHERE employees.id = ?';
+    params.push(employee.id);
+  }
 
   const result = await execute<{ affectedRows: number }>(query, params);
   return result.affectedRows > 0;

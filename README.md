@@ -215,6 +215,7 @@ This token needs to be included in the header as a bearer token
 - [Get Employee](#get-employee)
 - [Get Employee by User ID](#get-employee-by-user-id)
 - [Update Employee](#update-employee)
+- [Update Own Profile](#update-own-profile)
 - [New Employee](#new-employee)
 
 ---
@@ -352,6 +353,43 @@ _Note: Requires auth token to be set_
 {
     "id": , // The only required field
 
+    // Include any of the below that you want to update
+    "forename": "",
+    "middle_name": "",
+    "surname": "",
+    "email": "",
+    "phone": "",
+    "address_line_1": "",
+    "address_line_2": "",
+    "address_line_3": "",
+    "address_city": "",
+    "address_postcode": "",
+    "holiday_allowance": ,
+}
+```
+
+**Response:**
+
+```json
+{
+    "result": true / false
+}
+```
+
+---
+
+### Update Own Profile
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to employees](#employees)</sup>
+
+**Endpoint:** api/employee/own  
+**Privilege required:**
+**Method:** PUT  
+**Body:**
+
+```json
+{
     // Include any of the below that you want to update
     "forename": "",
     "middle_name": "",

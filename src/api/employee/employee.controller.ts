@@ -36,8 +36,32 @@ export const getOwnProfile: RequestHandler = async (
   } catch (error) {
     console.error('[employee.controller][getEmployee][Error] ', error);
     res.status(500).json({
-      message:
-        'There was an error fetching employee' + req.body.employeeID + '.',
+      message: 'There was an error fetching your profile',
+    });
+  }
+};
+
+// @ts-ignore
+export const updateOwnProfile: RequestHandler = async (
+  req: model.IUpdateEmployee,
+  res: Response
+) => {
+  try {
+    // @ts-ignore
+    const myID = getTokenUserId(req.headers.authorization);
+    if (myID && typeof myID === 'number') {
+      // @ts-ignore
+      req.body.id = myID;
+      // @ts-ignore
+      const result = await EmployeeService.updateEmployee(req.body, true);
+      res.status(200).json({ result });
+      return;
+    }
+    res.status(200).json({ message: 'Could not get ID from auth token' });
+  } catch (error) {
+    console.error('[employee.controller][getEmployee][Error] ', error);
+    res.status(500).json({
+      message: 'There was an error updating your profile',
     });
   }
 };

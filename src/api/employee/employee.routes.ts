@@ -16,6 +16,8 @@ router
 router
   .route('/update')
   .put(authorize([ACCESS.EMPLOYEES_UPDATE]), Controller.updateEmployee);
+
 router.route('/own').get(Controller.getOwnProfile);
+router.route('/own').put(Controller.updateOwnProfile);
 
 export default router;
