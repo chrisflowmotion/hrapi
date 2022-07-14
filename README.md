@@ -460,6 +460,7 @@ _Note: Requires auth token to be set_
 - [Get Employee Requests](#get-employee-holiday-requests)
 - [Get Own Requests](#get-own-holiday-requests)
 - [Update Request](#update-holiday-request)
+- [Update Own Request](#update-own-holiday-request)
 - [New Request](#new-holiday-request)
 - [Delete Request](#delete-holiday-request)
 - [Approve Request](#approve-holiday-request)
@@ -618,6 +619,42 @@ _Note: Status can only be updated via accept / reject request_
 **Endpoint**: api/holiday/update  
 **Method:** PUT  
 **Privilege required:** "updateHolidayRequest"  
+**Body:**
+
+```json
+{
+    "id": , // The only required field
+
+    // Include any of the below that you want to update
+    "name": "",
+    "start_date": "",
+    "end_date": "",
+    "days_used": "",
+```
+
+Response:
+
+```json
+{
+    "result": true / false
+}
+```
+
+---
+
+---
+
+### Update Own Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+
+_Note: Status can only be updated via accept / reject request_
+_Note: Requires authorization header to be set_
+
+**Endpoint**: api/holiday/update  
+**Method:** PUT  
+**Privilege required:**
 **Body:**
 
 ```json
