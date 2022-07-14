@@ -38,7 +38,6 @@ export const newHolidayRequest = async (holidayRequest: IHolidayRequest) => {
       holidayRequest.name,
       holidayRequest.start_date,
       holidayRequest.end_date,
-      holidayRequest.status,
       holidayRequest.days_used,
       holidayRequest.employee,
     ]

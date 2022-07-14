@@ -462,6 +462,7 @@ _Note: Requires auth token to be set_
 - [Update Request](#update-holiday-request)
 - [Update Own Request](#update-own-holiday-request)
 - [New Request](#new-holiday-request)
+- [Create Own Request](#create-own-holiday-request)
 - [Delete Request](#delete-holiday-request)
 - [Approve Request](#approve-holiday-request)
 - [Reject Request](#reject-holiday-request)
@@ -687,6 +688,36 @@ _note: Status will be set to PENDING and the request will be linked to the emplo
 **Endpoint**: api/holiday/new  
 **Method:** POST  
 **Privilege required:** "newHolidayRequest"  
+**Body:**
+
+```json
+ {
+    "name": "",
+    "start_date":"",
+    "end_date":"",
+    "days_used":
+ }
+```
+
+Response:
+
+```json
+{
+    "result":true/false
+}
+```
+
+---
+
+### Create Own Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+_note: Status will be set to PENDING and the request will be linked to the employee making it_
+
+**Endpoint**: api/holiday/own  
+**Method:** POST  
+**Privilege required:**
 **Body:**
 
 ```json

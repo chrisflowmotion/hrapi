@@ -18,6 +18,9 @@ export const HolidayQueries = {
   addHolidayRequest: `INSERT INTO holidayrequests (name, start_date, end_date, Status, days_used, employee)
     values(?, ?, ?, '${Status.pending}', ?, ?)`,
 
+  addOwnHolidayRequest: `INSERT INTO holidayrequests (name, start_date, end_date, Status, days_used, employee)
+    values(?, ?, ?, '${Status.pending}', ?, ?)`,
+
   deleteHolidayRequest: `DELETE FROM holidayrequests WHERE id = ?`,
 
   approveHolidayRequest: `UPDATE holidayrequests SET status = '${Status.accepted}' WHERE id = ?`,

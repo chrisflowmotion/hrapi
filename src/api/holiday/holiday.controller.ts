@@ -1,10 +1,10 @@
 // tslint:disable:no-console
 import { Request, Response, RequestHandler } from 'express';
-import { EmployeeQueries } from '../employee/employee.queries';
 import { getTokenUserId } from '../utils/jwt.utils';
 import * as model from './holiday.model';
-import { HolidayQueries } from './holiday.queries';
 import * as HolidayService from './holiday.service';
+import * as EmployeeService from '../employee/employee.service';
+import { IEmployee } from '../employee/employee.model';
 
 export const getAllHolidayRequests: RequestHandler = async (
   req: Request,
@@ -92,11 +92,37 @@ export const newHolidayRequest: RequestHandler = async (
   res: Response
 ) => {
   try {
+    req.body.status = model.Status.pending;
     const result = await HolidayService.newHolidayRequest(req.body);
-
     res.status(200).json({ result });
+    return;
   } catch (error) {
     console.error('[holiday.controller][newHoliday][Error] ', error);
+    res.status(500).json({
+      message: 'There was an error adding a new holiday request.',
+    });
+  }
+};
+
+export const createOwnHolidayRequest: RequestHandler = async (
+  req: model.IAddHolidayReq,
+  res: Response
+) => {
+  try {
+    const myID = getTokenUserId(req.headers.authorization);
+    if (myID && typeof myID === 'number') {
+      const empID = await EmployeeService.getEmployeeIDByUserID(myID);
+      const request = { ...req.body, employee: empID[0].id };
+      const result = await HolidayService.newHolidayRequest(request);
+      res.status(200).json({ result });
+      return;
+    }
+    res.status(200).json({ result: false });
+  } catch (error) {
+    console.error(
+      '[holiday.controller][createOwnHolidayRequest][Error] ',
+      error
+    );
     res.status(500).json({
       message: 'There was an error adding a new holiday request.',
     });

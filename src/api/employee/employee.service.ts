@@ -11,6 +11,13 @@ export const getEmployee = async (id: IEmployee['id']) => {
   return execute<IEmployee>(EmployeeQueries.getEmployee, [id]);
 };
 
+export const getEmployeeIDByUserID = async (id: IUser['id']) => {
+  return await execute<[{ id: IEmployee['id'] }]>(
+    EmployeeQueries.getEmployeeIDByUserID,
+    [id]
+  );
+};
+
 export const getEmployeeByUserID = async (id: IUser['id']) => {
   return execute<IEmployee>(EmployeeQueries.getEmployeeByUserID, [id]);
 };
