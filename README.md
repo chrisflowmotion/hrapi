@@ -850,6 +850,7 @@ Response:
 - [Get All Sick Days](#get-all-sick-days)
 - [Get Sick Day](#get-Sick-Day)
 - [Get Employee Sick Days](#get-employee-sick-days)
+- [Get Own Sick Days](#get-own-sick-days)
 - [Update Sick Day](#update-sick-days)
 - [New Sick Day](#new-sick-day)
 - [Delete Sick Day](#delete-sick-day)
@@ -948,6 +949,43 @@ Response:
       "reason": "",
       "employee":
     }
+  ]
+}
+```
+
+---
+
+### Get Own Sick Days
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to sick days](#sick-days)</sup>
+
+**Endpoint**: api/sickday/get/own  
+**Method:** GET  
+**Privilege required:**
+**Body:**
+
+_Note: Requires auth token to be set_
+
+```
+ {
+ }
+```
+
+Response:
+
+```json
+{
+  "sickDays": [
+    {
+      "id": ,
+      "start_date": "",
+      "end_date": "",
+      "days_used": ,
+      "reason": "",
+      "employee":
+    },
+    ...
   ]
 }
 ```

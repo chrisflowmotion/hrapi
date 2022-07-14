@@ -4,7 +4,6 @@ import { getTokenUserId } from '../utils/jwt.utils';
 import * as model from './holiday.model';
 import * as HolidayService from './holiday.service';
 import * as EmployeeService from '../employee/employee.service';
-import { IEmployee } from '../employee/employee.model';
 
 export const getAllHolidayRequests: RequestHandler = async (
   req: Request,
