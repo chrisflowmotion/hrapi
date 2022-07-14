@@ -464,6 +464,7 @@ _Note: Requires auth token to be set_
 - [New Request](#new-holiday-request)
 - [Create Own Request](#create-own-holiday-request)
 - [Delete Request](#delete-holiday-request)
+- [Cancel Own Request](#cancel-own-holiday-request)
 - [Approve Request](#approve-holiday-request)
 - [Reject Request](#reject-holiday-request)
 
@@ -747,6 +748,33 @@ Response:
 **Endpoint**: api/holiday/delete  
 **Method:** DELETE  
 **Privilege required:** "deleteHolidayRequest"  
+**Body:**
+
+```json
+ {
+    "requestID":
+ }
+```
+
+Response:
+
+```json
+{
+    "result": true / false
+}
+```
+
+---
+
+### Cancel Own Holiday Request
+
+<sup>[back to top](#api)</sup>  
+<sup>[back to holiday requests](#holiday-requests)</sup>
+_Note: Requires auth token to be set_
+
+**Endpoint**: api/holiday/own  
+**Method:** DELETE  
+**Privilege required:**
 **Body:**
 
 ```json

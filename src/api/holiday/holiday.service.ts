@@ -134,3 +134,22 @@ export const deleteHolidayRequest = async (
   );
   return result.affectedRows > 0;
 };
+
+export const cancelOwnHolidayRequest = async (
+  userID: IUser['id'],
+  requestID: IHolidayRequest['id']
+) => {
+  // Get a comma separated string of request IDs that belong to userID
+  const requestIDs = await execute<[{ ids: string }]>(
+    HolidayQueries.getUserHolidayRequests,
+    [userID]
+  );
+  // If we have a result
+  if (requestIDs.length === 1) {
+    // Check to see if the request the user is trying to update is one that belongs to the user
+    if (requestIDs[0].ids.split(',').includes(requestID.toString())) {
+      return deleteHolidayRequest(requestID);
+    }
+  }
+  return false;
+};

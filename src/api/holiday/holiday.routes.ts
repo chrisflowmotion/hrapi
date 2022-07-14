@@ -56,5 +56,6 @@ router
 router.route('/own').get(Controller.getOwnHolidayRequests);
 router.route('/own').put(Controller.updateOwnRequests);
 router.route('/own').post(Controller.createOwnHolidayRequest);
+router.route('/own').delete(Controller.cancelOwnHolidayRequest);
 
 export default router;

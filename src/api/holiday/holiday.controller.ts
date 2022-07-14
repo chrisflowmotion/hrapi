@@ -193,6 +193,36 @@ export const deleteHolidayRequest: RequestHandler = async (
 };
 
 // @ts-ignore
+export const cancelOwnHolidayRequest: RequestHandler = async (
+  req: model.IDeleteHolidayReq,
+  res: Response
+) => {
+  try {
+    const myID = getTokenUserId(req.headers.authorization);
+    if (myID && typeof myID === 'number') {
+      const result = await HolidayService.cancelOwnHolidayRequest(
+        myID,
+        req.body.requestID
+      );
+      res.status(200).json({ result });
+      return;
+    }
+    res.status(200).json({ result: false });
+  } catch (error) {
+    console.error(
+      '[holiday.controller][cancelOwnHolidayRequest][Error] ',
+      error
+    );
+    res.status(500).json({
+      message:
+        'There was an error updating holiday request ' +
+        req.body.requestID +
+        '.',
+    });
+  }
+};
+
+// @ts-ignore
 export const approveHolidayRequest: RequestHandler = async (
   req: model.IApproveHolidayReq,
   res: Response
