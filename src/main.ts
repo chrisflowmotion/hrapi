@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
    */
   const payload: Payload = {
     username: 'Chris.Hayden',
-    userID: 7,
+    userID: 10,
     accessTypes: [
       ACCESS.USERS_ALL,
       ACCESS.USERS_NEW,
@@ -40,6 +40,12 @@ if (process.env.NODE_ENV !== 'production') {
       ACCESS.USERS_RESET_PASSWORD,
       ACCESS.USERS_GRANT_PRIVILEGES,
       ACCESS.USERS_REVOKE_PRIVILEGES,
+
+      ACCESS.EMERGENCY_CONTACT_NEW,
+      ACCESS.EMERGENCY_CONTACT_GET,
+      ACCESS.EMERGENCY_CONTACT_EMPLOYEE_GET,
+      ACCESS.EMERGENCY_CONTACT_DELETE,
+      ACCESS.EMERGENCY_CONTACT_UPDATE,
 
       ACCESS.EMPLOYEES_ALL,
       ACCESS.EMPLOYEES_GET,
