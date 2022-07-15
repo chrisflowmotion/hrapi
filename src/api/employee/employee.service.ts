@@ -53,9 +53,6 @@ export const updateEmployee = async (
   employee: IUpdateEmployee,
   userID: boolean = false
 ) => {
-  // tslint:disable:no-console
-  console.log(employee);
-
   let query = 'UPDATE employees SET ';
   const params = [];
 
