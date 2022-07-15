@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as Controller from './sickdays.controller';
+import * as Controller from './sickday.controller';
 import { ACCESS, authorize } from '../middlewares/auth.middleware';
 
 const router = Router();

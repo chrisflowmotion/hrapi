@@ -1,8 +1,8 @@
 // tslint:disable:no-console
 import { Request, Response, RequestHandler } from 'express';
 import { getTokenUserId } from '../utils/jwt.utils';
-import * as model from './sickdays.model';
-import * as SickDayService from './sickdays.service';
+import * as model from './sickday.model';
+import * as SickDayService from './sickday.service';
 import * as EmployeeService from '../employee/employee.service';
 
 export const getAllSickDays: RequestHandler = async (
